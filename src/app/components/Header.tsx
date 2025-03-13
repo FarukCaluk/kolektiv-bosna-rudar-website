@@ -1,8 +1,6 @@
 "use client";
 import Image from "next/image";
 import ClubLogo from "../../../public/logo.png";
-import { FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
-import Link from "next/link";
 
 const backgroundImage = new URL(
   "../../../public/backgrounds/main-background.png",
