@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const isActive = (path: string) =>
     pathname === path || (path === "/sports" && pathname.startsWith("/sports"))
-      ? "text-main-club-color font-bold underline decoration-main-club-color underline-offset-[30px]"
+      ? "text-main-club-color font-bold decoration-main-club-color"
       : "hover:text-main-club-color transition-colors duration-200";
 
   const isSportActive = pathname.startsWith("/sports");
@@ -56,7 +56,9 @@ export default function Navbar() {
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className={`flex items-center gap-2 transition-colors duration-200 cursor-pointer ${
-                  isSportActive ? "text-main-club-color font-bold underline decoration-main-club-color underline-offset-[30px]" : "hover:text-main-club-color"
+                  isSportActive
+                    ? "text-main-club-color font-bold  decoration-main-club-color"
+                    : "hover:text-main-club-color"
                 }`}
               >
                 Sportovi
@@ -70,12 +72,17 @@ export default function Navbar() {
               {dropdownOpen && (
                 <ul className="absolute left-0 mt-2 w-48 bg-[#2b2b2b] shadow-lg rounded-lg overflow-hidden border border-stone-600">
                   {sportsPages.map((sport) => (
-                    <li key={sport.path} className="border-b border-stone-700 last:border-none">
+                    <li
+                      key={sport.path}
+                      className="border-b border-stone-700 last:border-none"
+                    >
                       <Link
                         href={sport.path}
                         onClick={() => setDropdownOpen(false)}
                         className={`block px-4 py-2 transition ${
-                          pathname === sport.path ? "text-main-club-color font-bold" : "hover:bg-main-club-color hover:text-white"
+                          pathname === sport.path
+                            ? "text-main-club-color font-bold"
+                            : "hover:bg-main-club-color hover:text-white"
                         } cursor-pointer`}
                       >
                         {sport.name}
@@ -84,6 +91,12 @@ export default function Navbar() {
                   ))}
                 </ul>
               )}
+            </li>
+
+            <li className={`${isActive("/gallery")}`}>
+              <Link href="/gallery" className="cursor-pointer">
+                Galerija
+              </Link>
             </li>
 
             <li className={isActive("/blog")}>
@@ -98,7 +111,11 @@ export default function Navbar() {
         {menuOpen && (
           <ul className="mt-4 bg-gradient-to-b from-[#242424] to-[rgba(32,32,32,0.7)] text-white text-center space-y-4 p-4 rounded-lg shadow-xl border border-stone-600 animate-slide-down md:hidden">
             <li className={isActive("/")}>
-              <Link href="/" onClick={() => setMenuOpen(false)} className="cursor-pointer">
+              <Link
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                className="cursor-pointer"
+              >
                 Početna
               </Link>
             </li>
@@ -127,7 +144,9 @@ export default function Navbar() {
                           setDropdownOpen(false);
                         }}
                         className={`block px-4 py-2 transition ${
-                          pathname === sport.path ? "text-main-club-color font-bold" : "hover:bg-main-club-color hover:text-white"
+                          pathname === sport.path
+                            ? "text-main-club-color font-bold"
+                            : "hover:bg-main-club-color hover:text-white"
                         } cursor-pointer`}
                       >
                         {sport.name}
@@ -138,8 +157,18 @@ export default function Navbar() {
               )}
             </li>
 
+            <li className={`${isActive("/gallery")}`}>
+              <Link href="/gallery" className="cursor-pointer">
+                Galerija
+              </Link>
+            </li>
+
             <li className={isActive("/blog")}>
-              <Link href="/blog" onClick={() => setMenuOpen(false)} className="cursor-pointer">
+              <Link
+                href="/blog"
+                onClick={() => setMenuOpen(false)}
+                className="cursor-pointer"
+              >
                 Blog
               </Link>
             </li>
