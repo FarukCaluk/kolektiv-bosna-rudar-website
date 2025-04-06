@@ -17,6 +17,7 @@ import {
 import { useState, useEffect } from "react";
 import LocationSection from "@/app/components/LocationSection";
 import Application from "@/app/components/kickboxing/Application";
+import Trainers from "@/app/components/kickboxing/Trainers";
 
 const backgroundImage = new URL(
   "../../../../public/backgrounds/japan-gradient.png",
@@ -156,6 +157,8 @@ export default function KickboxingPage() {
           </button>
         </div>
       )}
+
+      <Trainers />
 
       {/* Contact Section */}
       <Application />

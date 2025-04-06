@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { SMTPClient } from "emailjs";
-import Image from "next/image";
 
 const backgroundImage = new URL(
   "../../../public/backgrounds/main-background.png",
