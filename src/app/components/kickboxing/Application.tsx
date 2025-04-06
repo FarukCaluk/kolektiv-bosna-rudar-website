@@ -43,7 +43,7 @@ export default function Application() {
           Treninzi su dostupni u Visoko, Kakanju, Kiseljaku, Varešu i Brezi.
           Mjesečna članarina iznosi{" "}
           <span className="text-main-club-color font-semibold">50 KM</span>.
-          Plaćanje se vrši na račun trenera nakon prijave.
+          <br /> <br /> Plaćanje se vrši na račun trenera nakon prijave.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
