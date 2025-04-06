@@ -27,26 +27,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "your_service_id",
-        "your_template_id",
-        e.target as HTMLFormElement,
-        "your_user_id"
-      )
-      .then(
-        (result: any) => {
-          console.log(result.text);
-          setIsSuccess(true);
-          setIsError(false);
-        },
-        (error: any) => {
-          console.log(error.text);
-          setIsError(true);
-          setIsSuccess(false);
-        }
-      );
   };
 
   return (
