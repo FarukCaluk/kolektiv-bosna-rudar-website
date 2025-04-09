@@ -27,7 +27,7 @@ export default function Gallery() {
           Galerija
         </h1>
         <p className="text-center text-lg mb-12">
-          Posjetite naše sociajlne mreže za još kvalitetnih slika sa takmičenja,
+          Posjetite naše socijalne mreže za još kvalitetnih slika sa takmičenja,
           treninga, itd.
         </p>
 

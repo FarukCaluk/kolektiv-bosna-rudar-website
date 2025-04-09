@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Application() {
   const [formData, setFormData] = useState({
@@ -7,10 +7,14 @@ export default function Application() {
     email: "",
     lokacija: "",
     tipClana: "odrasla_osoba",
+    borilackaVjestina: "taekwondo", // default value for martial art
   });
 
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  // Set default fee
+  const [monthlyFee, setMonthlyFee] = useState(50);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -20,6 +24,32 @@ export default function Application() {
       ...prev,
       [name]: value,
     }));
+
+    // Update the monthly fee when the martial art is changed
+    if (name === "borilackaVjestina") {
+      updateFee(value);
+    }
+  };
+
+  const updateFee = (selectedMartialArt: string) => {
+    // Adjust fee based on the martial art selected
+    switch (selectedMartialArt) {
+      case "taekwondo":
+        setMonthlyFee(50); // Default fee for Taekwondo
+        break;
+      case "mma":
+        setMonthlyFee(60); // Increased fee for MMA
+        break;
+      case "kickboxing":
+        setMonthlyFee(55); // Increased fee for Kickboxing
+        break;
+      case "trening_za_zene":
+        setMonthlyFee(45); // Reduced fee for Women’s Training
+        break;
+      default:
+        setMonthlyFee(50); // Default fee
+        break;
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,6 +59,11 @@ export default function Application() {
     setIsSuccess(true);
     setIsError(false);
   };
+
+  useEffect(() => {
+    // Initialize fee when the component mounts based on the selected martial art
+    updateFee(formData.borilackaVjestina);
+  }, []);
 
   return (
     <div
@@ -42,7 +77,10 @@ export default function Application() {
         <p className="text-white/80 text-center mb-8 text-lg">
           Treninzi su dostupni u Visoko, Kakanju, Kiseljaku, Varešu i Brezi.
           Mjesečna članarina iznosi{" "}
-          <span className="text-main-club-color font-semibold">50 KM</span>.
+          <span className="text-main-club-color font-semibold">
+            {monthlyFee} KM
+          </span>
+          .
           <br /> <br /> Plaćanje se vrši na račun trenera nakon prijave.
         </p>
 
@@ -80,6 +118,19 @@ export default function Application() {
             <option value="visoko">Visoko</option>
             <option value="kiseljak">Kiseljak</option>
             <option value="vares">Vareš</option>
+          </select>
+
+          <select
+            name="borilackaVjestina"
+            className="w-full p-4 bg-[#242424] cursor-pointer text-white rounded-lg border border-[#424242] focus:ring-2 focus:ring-[#5a5a5a] transition"
+            value={formData.borilackaVjestina}
+            onChange={handleChange}
+            required
+          >
+            <option value="taekwondo">Taekwondo</option>
+            <option value="mma">MMA</option>
+            <option value="kickboxing">Kickboxing</option>
+            <option value="trening_za_zene">Trening za žene</option>
           </select>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
