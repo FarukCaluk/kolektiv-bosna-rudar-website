@@ -20,7 +20,7 @@ import Application from "@/app/components/kickboxing/Application";
 import Trainers from "@/app/components/kickboxing/Trainers";
 
 const backgroundImage = new URL(
-  "../../../../public/backgrounds/japan-gradient.png",
+  "../../../../public/backgrounds/japan-gradient-4.png",
   import.meta.url
 );
 
@@ -57,7 +57,7 @@ export default function KickboxingPage() {
   return (
     <div className="bg-[#181818] text-white min-h-screen">
       {/* Hero Section */}
-      <div className="relative pt-12 w-full h-full flex flex-col justify-start px-8">
+      <div className="relative py-76 w-full h-full flex flex-col justify-center items-center text-center px-8">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-100"
           style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -66,12 +66,10 @@ export default function KickboxingPage() {
           Kickboxing
         </h1>
 
-        <p className="text-lg z-10 md:text-xl mt-4">
+        <p className="text-lg z-10 w-[80%] md:text-xl mt-4">
           Kombinacija snage, brzine i strategije. Pridružite nam se i postanite
-          bolja verzija sebe!
-          <br /> <br />
-          Naš kolektiv nudi kickboxing usluge u mnogim gradovima širom BiH kao
-          što su:{" "}
+          bolja verzija sebe! Naš kolektiv nudi kickboxing usluge u mnogim
+          gradovima širom BiH kao što su:{" "}
           <span className="text-main-club-color">
             Kakanj, Breza, Visoko, Kiseljak, Vareš
           </span>
@@ -84,12 +82,12 @@ export default function KickboxingPage() {
               target.scrollIntoView({ behavior: "smooth" });
             }
           }}
-          className="mt-6 border xl:mb-0 mb-8 border-neutral-600 px-6 py-3 bg-black z-10 cursor-pointer text-white font-bold w-fit shadow-lg hover:bg-white hover:text-black transition-all duration-150 flex items-center"
+          className="mt-6 border xl:mb-12 mb-12 border-neutral-600 px-6 py-3 bg-black z-10 cursor-pointer text-white font-bold w-fit shadow-lg hover:bg-white hover:text-black transition-all duration-150 flex items-center"
         >
           <FaUsers className="mr-2" /> Prijavi se odmah
         </button>
       </div>
-      <div className="z-50 mt-12">
+      <div className="z-50">
         <LocationSection />
       </div>
 

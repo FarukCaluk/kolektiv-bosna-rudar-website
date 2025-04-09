@@ -8,7 +8,7 @@ export default function WomensTraining() {
     <div className="bg-[#242424] text-white min-h-screen p-6 md:p-12">
       <div className="max-w-4xl mx-auto text-center">
         {/* Header */}
-        <h1 className="text-4xl md:text-5xl font-bold text-main-club-color mb-4 animate-fade-in">
+        <h1 className="text-7xl md:text-7xl aladin-font font-bold text-main-club-color mb-4 animate-fade-in">
           Trening za Žene
         </h1>
         <p className="text-lg md:text-xl text-gray-300 mb-8 opacity-80 hover:opacity-100 transition-opacity duration-300">

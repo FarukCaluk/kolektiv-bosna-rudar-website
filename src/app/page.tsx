@@ -4,6 +4,7 @@ import Contact from "./components/Contact";
 import Header from "./components/Header";
 import Locations from "./components/Locations";
 import Sports from "./components/Sports";
+import Gallery from "./gallery/page";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Header />
       <Achievements />
       <About />
+      <Gallery />
       <Sports />
       <Locations />
       <Contact />

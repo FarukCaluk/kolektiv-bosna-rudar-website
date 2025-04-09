@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import Gallery from "../../../public/backgrounds/gallery.png";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const backgroundImage = new URL(
   "../../../public/backgrounds/japan-gradient.png",
@@ -34,7 +35,7 @@ export default function About() {
   return (
     <div
       id="about"
-      className="w-full min-h-screen cursor-default relative bg-cover bg-center px-6 sm:px-8"
+      className="w-full min-h-screen h-[1200] cursor-default relative bg-cover bg-center px-6 sm:px-8"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="absolute inset-0 flex flex-col items-center sm:items-start justify-center z-20 max-w-6xl px-4 mx-auto">
@@ -43,7 +44,7 @@ export default function About() {
         </h1>
         <div className="py-1 my-4 w-44 sm:w-52 md:w-64 lg:w-80 bg-gradient-to-r from-white to-[#ffffff49]"></div>
         <div className="flex flex-col md:flex-row items-center gap-8">
-          <p className="text-sm sm:text-lg md:text-xl lg:text-2xl w-full md:w-[60%] text-white/90 leading-relaxed font-medium text-center sm:text-left">
+          <p className="text-lg sm:text-lg md:text-xl lg:text-2xl w-full md:w-[60%] text-white/90 leading-relaxed font-medium text-center sm:text-left">
             Želite li naučiti samoobranu? Poboljšati fizičku kondiciju? Razviti
             koordinaciju i samopouzdanje? Taekwondo je idealan sport za vas!
             Korejska borilačka vještina s kombinacijom udaraca nogama, rukama i
@@ -54,11 +55,7 @@ export default function About() {
           </p>
           <div
             id="about-image"
-            className={`transition-transform duration-700 ease-in-out ${
-              isVisible
-                ? "translate-x-0 opacity-100"
-                : "translate-x-10 opacity-0"
-            }`}
+            className="transition-transform duration-700 ease-in-out"
           >
             <Image
               src={Gallery}
@@ -86,6 +83,14 @@ export default function About() {
             <FaEnvelope className="text-main-club-color" />
             <span>taekwondo.klub.bosna@gmail.com</span>
           </div>
+        </div>
+        <div className="pt-12">
+          <Link
+            href="/membership"
+            className="px-4 xs:px-6 py-2 text-white border border-white text-xs xs:text-sm sm:text-base hover:text-black hover:bg-white font-semibold shadow-lg hover:bg-opacity-90 transition text-center"
+          >
+            Učlanite se
+          </Link>
         </div>
       </div>
     </div>

@@ -38,3 +38,41 @@ body {
   color: var(--foreground);
   font-family: Poppins, sans-serif;
 }
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.4s ease-out forwards;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #f45b44 #181818; /* thumb, track */
+}
+
+/* WebKit Browsers */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181818;
+  border-left: 1px solid #2c2c2c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f45b44, #a83232);
+  border-radius: 8px;
+  border: 2px solid #181818;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff6b4d, #c14040);
+}

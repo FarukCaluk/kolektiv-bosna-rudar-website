@@ -35,7 +35,7 @@ export default function Header() {
 
   return (
     <div
-      className="w-full h-screen cursor-default relative bg-cover bg-center overflow-hidden"
+      className="w-full cursor-default relative h-[1000] bg-cover bg-center overflow-hidden"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       {/* Content in the center */}
@@ -55,8 +55,8 @@ export default function Header() {
             />
           </div>
         </div>
-        <div className="py-1 my-4 w-40 xs:w-52 sm:w-64 md:w-72 lg:w-80 bg-gradient-to-r from-white to-[#ffffff49] drop-shadow-xl"></div>
-        <p className="text-pretty text-xs xs:text-sm sm:text-lg md:text-xl lg:text-2xl w-[95%] sm:w-[85%] text-white/90 leading-relaxed font-medium text-center sm:text-left">
+        <div className="py-0.5 my-4 w-40 xs:w-52 sm:w-64 md:w-72 lg:w-80 bg-gradient-to-r from-white to-[#ffffff49] drop-shadow-xl"></div>
+        <p className="text-pretty text-lg text-white/90 leading-relaxed font-medium text-center sm:text-left">
           <span className="text-main-club-color font-bold">
             Kolektiv Bosna-Rudar
           </span>{" "}

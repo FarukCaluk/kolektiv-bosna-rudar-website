@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import {
   FaRunning,
   FaHandRock,
@@ -51,7 +52,7 @@ export default function Sports() {
         <h1 className="text-5xl sm:text-8xl font-bold mb-8 aladin-font">
           SPORTOVI KOLEKTIVA
         </h1>
-        <div className="py-1 mb-10 w-44 sm:w-52 md:w-64 lg:w-80 mx-auto bg-gradient-to-r from-white to-[#ffffff49]"></div>
+        <div className="py-0.5 mb-10 w-44 sm:w-52 md:w-64 lg:w-80 mx-auto bg-gradient-to-r from-white to-[#ffffff49]"></div>
         <p className="text-lg sm:text-xl text-white/80 mb-12">
           Naša ponuda sportova i treninga pruža vam priliku da razvijete svoju
           fizičku izdržljivost, snagu, fleksibilnost i mentalnu disciplinu. U
@@ -72,6 +73,14 @@ export default function Sports() {
               </p>
             </div>
           ))}
+        </div>
+        <div className="pt-12">
+          <Link
+            href="/membership"
+            className="px-4 xs:px-6 py-2 text-white bg-black text-xs xs:text-sm sm:text-base hover:text-black hover:bg-white font-semibold shadow-lg hover:bg-opacity-90 transition text-center"
+          >
+            Učlanite se
+          </Link>
         </div>
         {/* Social Media Links */}
         <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">
