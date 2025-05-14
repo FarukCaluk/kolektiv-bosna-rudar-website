@@ -101,7 +101,7 @@ export default function Navbar() {
 
             <li className={isActive("/blog")}>
               <Link href="/blog" className="cursor-pointer">
-                Blog
+                Novosti
               </Link>
             </li>
           </ul>

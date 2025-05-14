@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Aladin&display=swap");
+
 @import "tailwindcss";
 @tailwind utilities;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -10,9 +12,11 @@
 .text-main-club-color {
   color: var(--club-color);
 }
+
 .bg-main-club-color {
   background-color: var(--club-color);
 }
+
 .aladin-font {
   font-family: "Aladin", system-ui;
   font-weight: 400;
@@ -38,11 +42,13 @@ body {
   color: var(--foreground);
   font-family: Poppins, sans-serif;
 }
+
 @keyframes fade-in-down {
   0% {
     opacity: 0;
     transform: translateY(-10%);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -52,9 +58,11 @@ body {
 .animate-fade-in-down {
   animation: fade-in-down 0.4s ease-out forwards;
 }
+
 * {
   scrollbar-width: thin;
-  scrollbar-color: #f45b44 #181818; /* thumb, track */
+  scrollbar-color: #f45b44 #181818;
+  /* thumb, track */
 }
 
 /* WebKit Browsers */
@@ -75,4 +83,8 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #ff6b4d, #c14040);
+}
+
+.prose p {
+  margin-bottom: 2rem;
 }
