@@ -20,11 +20,11 @@ export default function Navbar() {
   ];
 
   const isActive = (path: string) =>
-    pathname === path || (path === "/sports" && pathname.startsWith("/sports"))
+    pathname === path || (path === "/sports" && pathname?.startsWith("/sports"))
       ? "text-main-club-color font-bold decoration-main-club-color"
       : "hover:text-main-club-color transition-colors duration-200";
 
-  const isSportActive = pathname.startsWith("/sports");
+  const isSportActive = pathname?.startsWith("/sports");
 
   return (
     <div className="sticky top-0 w-full z-50 bg-gradient-to-r from-[#242424] to-[rgba(39,39,39,0.34)] text-white backdrop-blur-md shadow-sm border-b border-opacity-50 border-stone-600">
@@ -169,7 +169,7 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className="cursor-pointer"
               >
-                Blog
+                Novosti
               </Link>
             </li>
           </ul>
