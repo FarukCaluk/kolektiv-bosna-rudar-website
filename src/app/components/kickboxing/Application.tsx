@@ -35,13 +35,13 @@ export default function Application() {
     // Adjust fee based on the martial art selected
     switch (selectedMartialArt) {
       case "taekwondo":
-        setMonthlyFee(50); // Default fee for Taekwondo
+        setMonthlyFee(40); // Default fee for Taekwondo
         break;
       case "mma":
-        setMonthlyFee(60); // Increased fee for MMA
+        setMonthlyFee(50); // Increased fee for MMA
         break;
       case "kickboxing":
-        setMonthlyFee(55); // Increased fee for Kickboxing
+        setMonthlyFee(50); // Increased fee for Kickboxing
         break;
       case "trening_za_zene":
         setMonthlyFee(45); // Reduced fee for Women’s Training

@@ -4,17 +4,18 @@ import Image from "next/image";
 import { FaFacebook, FaSearchPlus } from "react-icons/fa";
 
 const images = [
-  "/images/gallery-1.jpg",
-  "/images/gallery-2.jpg",
-  "/images/gallery-3.jpg",
-  "/images/gallery-3.jpg",
-  "/images/gallery-5.png",
-  "/images/gallery-6.webp",
-  "/images/gallery-7.jpg",
-  "/images/gallery-8.jpg",
-  "/images/gallery-9.jpg",
-  "/images/gallery-10.jpg",
-  "/images/gallery-11.jpg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.18 (1).jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.18 (2).jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.18 (3).jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.18.jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.19 (1).jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.19 (2).jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.19 (3).jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.19.jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.20 (2).jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.20 (3).jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.20.jpeg",
+  "/images/galeryphotos/WhatsApp Image 2025-05-14 at 18.22.20 (1).jpeg",
 ];
 
 export default function Gallery() {

@@ -5,7 +5,7 @@ import { GiBlackBelt } from "react-icons/gi";
 const trainers = [
   {
     name: "Mirza Topuz",
-    image: "/trainers/topuz.png",
+    image: "/trainers/WhatsApp Image 2025-05-14 at 17.24.25.jpeg",
     belt: "Crni pojas",
     dan: "MMA FIGHTER & TRAINER",
     border: "border-amber-500",
@@ -22,7 +22,7 @@ export default function Trainers() {
         {trainers.map((trainer, index) => (
           <div
             key={index}
-            className={`border cursor-pointer hover:animate-bounce ${trainer.border} rounded-md overflow-hidden shadow-xl bg-black`}
+            className={`border cursor-pointer hover: ${trainer.border} rounded-md overflow-hidden shadow-xl bg-black`}
           >
             <div className="relative w-full h-80">
               <Image
