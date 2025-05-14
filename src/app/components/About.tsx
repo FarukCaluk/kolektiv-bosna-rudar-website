@@ -45,13 +45,17 @@ export default function About() {
         <div className="py-1 my-4 w-44 sm:w-52 md:w-64 lg:w-80 bg-gradient-to-r from-white to-[#ffffff49]"></div>
         <div className="flex flex-col md:flex-row items-center gap-8">
           <p className="text-lg sm:text-lg md:text-xl lg:text-2xl w-full md:w-[60%] text-white/90 leading-relaxed font-medium text-center sm:text-left">
-            Želite li naučiti samoobranu? Poboljšati fizičku kondiciju? Razviti
-            koordinaciju i samopouzdanje? Taekwondo je idealan sport za vas!
-            Korejska borilačka vještina s kombinacijom udaraca nogama, rukama i
-            šakama nudi učinkovitost i izvanrednu tjelovježbu. <br /> <br />
-            Naši treninzi su prilagođeni svim uzrastima i razinama vještine.
-            Pridružite nam se i postanite dio zajednice koja teži zdravom načinu
-            života i sportskim uspjesima!
+
+            Naš kolektiv nudi vrhunske treninge taekwondoa, kickboxinga, MMA-a i fitnessa – sve na jednom mjestu i na više lokacija širom BiH!
+            <br /> <br />
+            🥋 Taekwondo – korejska borilačka vještina koja razvija disciplinu, snagu i fleksibilnost.
+            🥊 Kickboxing – spoj brzine, snage i strategije za snažno i funkcionalno tijelo.
+            🥋 MMA – dinamičan sport koji kombinuje tehnike različitih borilačkih vještina.
+            💪 Fitness programi – za sve koji žele poboljšati zdravlje, formu i energiju.
+            <br /> <br />
+            Treninzi su prilagođeni svim uzrastima i nivoima iskustva!
+            Pridruži se zajednici koja promoviše zdrav način života, sportski duh i lični napredak.
+
           </p>
           <div
             id="about-image"

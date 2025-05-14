@@ -12,7 +12,7 @@ const locations = [
     name: "Visoko",
     description:
       "Taekwondo sekcija dostupna za sve uzraste. Pridružite nam se u Visokom i postanite najbolja verzija sebe!",
-    services: ["Taekwondo"],
+    services: ["Taekwondo", "Fitness za žene"],
     contact: {
       phone: "+387 32 123 456",
       hours: "Pon - Pet: 08:00 - 20:00",
@@ -22,7 +22,7 @@ const locations = [
     name: "Kakanj",
     description:
       "MMA i Kickboxing trenuci u Kaknju. Ovdje možete razviti svoje borilačke vještine i postaviti nove ciljeve.",
-    services: ["MMA", "Kickboxing", "Fitness za žene"],
+    services: ["Taekwondo","MMA", "Kickboxing", "Fitness za žene"],
     contact: {
       phone: "+387 32 654 321",
       hours: "Pon - Pet: 08:00 - 20:00",
@@ -32,7 +32,7 @@ const locations = [
     name: "Breza",
     description:
       "Kickboxing i MMA trenuci u Brezi. Dođite i postanite bolji borac uz naše specijalizirane programe.",
-    services: ["MMA", "Kickboxing"],
+    services: ["Taekwondo","MMA"],
     contact: {
       phone: "+387 32 789 012",
       hours: "Pon - Pet: 08:00 - 20:00",

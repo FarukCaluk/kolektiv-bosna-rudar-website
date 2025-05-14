@@ -24,7 +24,7 @@ const backgroundImage = new URL(
   import.meta.url
 );
 
-const galleryImages = ["/mma-1.jpg", "/mma-2.jpg", "/mma-3.jpg", "/mma-4.jpg"];
+const galleryImages = ["/mma-1.jpg", "/trainers/WhatsApp Image 2025-05-14 at 17.26.43.jpeg", "/mma-3.jpg", "/images/WhatsApp Image 2025-05-14 at 17.26.47.jpeg"];
 
 export default function KickboxingPage() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -66,7 +66,7 @@ export default function KickboxingPage() {
           borilačkim vještinama, uključujući džiu-džicu, rvanje, kickboxing, i
           Muay Thai. Dostupni smo u
           <span className="text-main-club-color">
-            : Kakanj, Breza, Visoko, Kiseljak, Vareš
+            : Kakanj, Breza, Visoko
           </span>
         </p>
 
@@ -83,7 +83,7 @@ export default function KickboxingPage() {
         </button>
       </div>
       <div className="z-50">
-        <LocationSection />
+        <LocationSection locations={["Visoko", "Kakanj", "Breza"]} />
       </div>
 
       {/* Gallery Section */}

@@ -20,17 +20,17 @@ import Application from "@/app/components/kickboxing/Application";
 import Trainers from "@/app/components/kickboxing/Trainers";
 
 const backgroundImage = new URL(
-  "../../../../public/backgrounds/japan-gradient-4.png",
+  "../../../../public/backgrounds/image.png",
   import.meta.url
 );
 
 const galleryImages = [
-  "/kickboxing-1.jpg",
-  "/kickboxing-2.jpg",
-  "/kickboxing-3.jpg",
-  "/kickboxing-4.jpg",
-  "/kickboxing-5.jpg",
-  "/kickboxing-6.jpg",
+  "/WhatsApp Image 2025-05-14 at 17.44.16.jpeg",
+  "/WhatsApp Image 2025-05-14 at 17.44.16 (1).jpeg",
+  "/WhatsApp Image 2025-05-14 at 17.44.16 (2).jpeg",
+  "/WhatsApp Image 2025-05-14 at 17.44.19.jpeg",
+  "/WhatsApp Image 2025-05-14 at 17.44.19 (1).jpeg",
+
 ];
 
 export default function KickboxingPage() {
@@ -67,11 +67,11 @@ export default function KickboxingPage() {
         </h1>
 
         <p className="text-lg z-10 w-[80%] md:text-xl mt-4">
-          Kombinacija snage, brzine i strategije. Pridružite nam se i postanite
-          bolja verzija sebe! Naš kolektiv nudi kickboxing usluge u mnogim
-          gradovima širom BiH kao što su:{" "}
+          Kombinacija snage, brzine i strategije.
+Pridruži se našem kickboxing kolektivu i postani bolja verzija sebe!
+Nudimo profesionalne kickboxing treninge za sve uzraste – bilo da želiš poboljšati kondiciju, naučiti samoodbranu ili se takmičiti.Treninzi se održavaju u {" "}
           <span className="text-main-club-color">
-            Kakanj, Breza, Visoko, Kiseljak, Vareš
+            Kakanju
           </span>
         </p>
 
@@ -88,7 +88,7 @@ export default function KickboxingPage() {
         </button>
       </div>
       <div className="z-50">
-        <LocationSection />
+         <LocationSection locations={["Kakanj"]} />
       </div>
 
       {/* Gallery Section */}
