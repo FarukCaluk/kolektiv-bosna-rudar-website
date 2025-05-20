@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-export default function Application() {
+export default function Application_mma() {
   const [formData, setFormData] = useState({
     imePrezime: "",
     email: "",
@@ -75,7 +75,7 @@ export default function Application() {
           Prijava u Klub
         </h1>
         <p className="text-white/80 text-center mb-8 text-lg">
-          Treninzi su dostupni u Kaknju.
+          Treninzi su dostupni u Visokom, Kakanju i Brezi.
         <br /> Plaćanje se vrši na račun trenera nakon prijave.
         </p>
 

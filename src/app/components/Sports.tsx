@@ -34,7 +34,7 @@ const sports = [
       "Eksplozivni treninzi koji poboljšavaju snagu, kondiciju i tehniku udaraca. Idealan sport za energične ljude! Učićete kako da se branite i podignete nivo svoje fizičke spremnosti na viši nivo.",
   },
   {
-    name: "Trening za žene",
+    name: "Fitness za žene",
     icon: <FaUsers className="text-white text-5xl" />,
     description:
       "Posebno prilagođeni treninzi za žene fokusirani na snagu, fleksibilnost i samopouzdanje! Ovaj program je osmišljen da vam pomogne da postignete svoje fitness ciljeve u sigurnom i podržavajućem okruženju.",

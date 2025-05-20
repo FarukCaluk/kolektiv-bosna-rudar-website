@@ -18,6 +18,7 @@ import { useState, useEffect } from "react";
 import LocationSection from "@/app/components/LocationSection";
 import Application from "@/app/components/kickboxing/Application";
 import Trainers from "@/app/components/mma/Trainers";
+import Application_mma from "@/app/components/mma/Application";
 
 const backgroundImage = new URL(
   "../../../../public/backgrounds/japan-gradient-3.png",
@@ -64,10 +65,8 @@ export default function KickboxingPage() {
           razvoj boraca u svim aspektima MMA discipline. Naš kolektiv okuplja
           strastvene i disciplinovane borce koji se treniraju u raznim
           borilačkim vještinama, uključujući džiu-džicu, rvanje, kickboxing, i
-          Muay Thai. Dostupni smo u
-          <span className="text-main-club-color">
-            : Kakanj, Breza, Visoko
-          </span>
+          Muay Thai.
+
         </p>
 
         <button
@@ -154,7 +153,7 @@ export default function KickboxingPage() {
       <Trainers />
 
       {/* Contact Section */}
-      <Application />
+      <Application_mma />
 
       <div className="px-6 md:px-16 py-12">
         <h2 className="text-3xl font-bold text-main-club-color mb-6 flex items-center">
@@ -163,10 +162,12 @@ export default function KickboxingPage() {
         <div className="space-y-4 text-lg text-gray-300">
           <p className="flex items-center gap-2">
             <FaMapMarkerAlt className="text-main-club-color" /> Kickboxing sala,
-            Visoko, Kakanj, Breza, Kiseljak, Vareš
+            Visoko, Kakanj, Breza.
           </p>
           <p className="flex items-center gap-2">
-            <FaPhone className="text-main-club-color" /> 061 376 075
+            <FaPhone className="text-main-club-color" /> 062 314 791
+            
+            <FaPhone className="text-main-club-color" /> 061 376 075 
           </p>
         </div>
       </div>

@@ -16,7 +16,7 @@ export default function Navbar() {
     { name: "Taekwondo", path: "/sports/taekwondo" },
     { name: "MMA", path: "/sports/mma" },
     { name: "Kickboxing", path: "/sports/kickboxing" },
-    { name: "Trening za žene", path: "/sports/women-training" },
+    { name: "Fitness za žene", path: "/sports/women-training" },
   ];
 
   const isActive = (path: string) =>

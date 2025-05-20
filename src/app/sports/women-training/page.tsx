@@ -9,7 +9,7 @@ export default function WomensTraining() {
       <div className="max-w-4xl mx-auto text-center">
         {/* Header */}
         <h1 className="text-7xl md:text-7xl aladin-font font-bold text-main-club-color mb-4 animate-fade-in">
-          Trening za Žene
+          Fitness za Žene
         </h1>
         <p className="text-lg md:text-xl text-gray-300 mb-8 opacity-80 hover:opacity-100 transition-opacity duration-300">
           Otkrijte snagu i energiju kroz treninge prilagođene ženama, uz
@@ -34,8 +34,9 @@ export default function WomensTraining() {
           </h2>
           <ul className="text-gray-300 space-y-3 text-left md:text-center">
             {[
+              "Treninge vodi certificirana trenerica sa iskustvom",
               "Poboljšajte kondiciju i fizičku snagu",
-              "Treninzi prilagođeni svim uzrastima i nivoima",
+              "Treninzi prilagođeni svim nivoima spremnosti",
               "Pozitivna i motivirajuća atmosfera",
             ].map((text, index) => (
               <li
@@ -52,14 +53,17 @@ export default function WomensTraining() {
         {/* Contact Information */}
         <div className="mt-8 bg-[#2b2b2b] p-6 rounded-lg shadow-md border border-stone-600 transition-transform duration-300 hover:scale-105">
           <h2 className="text-2xl font-bold text-main-club-color mb-4">
-            Kontakt i Lokacija
+            Kontakti i Lokacije
           </h2>
           <div className="flex flex-col space-y-4 text-gray-300">
             <p className="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
               <FaMapMarkerAlt className="text-main-club-color animate-bounce" />{" "}
-              TKD Sala Rudar, Kakanj
+              TKD Sala Rudar Kakanj
+               <FaPhone className="text-main-club-color animate-pulse" /> 060 300 2730 ili 062 169 429
             </p>
             <p className="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                  <FaMapMarkerAlt className="text-main-club-color animate-bounce" />{" "}
+              Fitness centar Bosna - Visoko
               <FaPhone className="text-main-club-color animate-pulse" /> 061 376
               075
             </p>

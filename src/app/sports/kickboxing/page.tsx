@@ -69,10 +69,8 @@ export default function KickboxingPage() {
         <p className="text-lg z-10 w-[80%] md:text-xl mt-4">
           Kombinacija snage, brzine i strategije.
 Pridruži se našem kickboxing kolektivu i postani bolja verzija sebe!
-Nudimo profesionalne kickboxing treninge za sve uzraste – bilo da želiš poboljšati kondiciju, naučiti samoodbranu ili se takmičiti.Treninzi se održavaju u {" "}
-          <span className="text-main-club-color">
-            Kakanju
-          </span>
+Nudimo profesionalne kickboxing treninge za sve uzraste – bilo da želiš poboljšati kondiciju, naučiti samoodbranu ili se takmičiti. {" "}
+
         </p>
 
         <button
@@ -168,9 +166,10 @@ Nudimo profesionalne kickboxing treninge za sve uzraste – bilo da želiš pobo
         <div className="space-y-4 text-lg text-gray-300">
           <p className="flex items-center gap-2">
             <FaMapMarkerAlt className="text-main-club-color" /> Kickboxing sala,
-            Visoko, Kakanj, Breza, Kiseljak, Vareš
+             Kakanj.
           </p>
           <p className="flex items-center gap-2">
+            <FaPhone className="text-main-club-color" /> 061 400 731
             <FaPhone className="text-main-club-color" /> 061 376 075
           </p>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 import { FaMapMarkerAlt, FaPhoneAlt, FaRegClock } from "react-icons/fa";
 import React from "react";
+import { Philosopher } from "next/font/google";
 
 const backgroundImage = new URL(
   "../../../public/backgrounds/japan-gradient.png",
@@ -11,10 +12,11 @@ const locations = [
   {
     name: "Visoko",
     description:
-      "Taekwondo sekcija dostupna za sve uzraste. Pridružite nam se u Visokom i postanite najbolja verzija sebe!",
+      "Taekwondo sekcija dostupna za sve uzraste. Pridružite nam se u Visokom i postanite najbolja verzija sebe! ",
     services: ["Taekwondo", "Fitness za žene"],
     contact: {
       phone: "+387 32 123 456",
+      
       hours: "Pon - Pet: 08:00 - 20:00",
     },
   },

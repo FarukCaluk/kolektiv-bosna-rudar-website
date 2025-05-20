@@ -18,6 +18,7 @@ import { useState, useEffect } from "react";
 import LocationSection from "@/app/components/LocationSection";
 import Application from "@/app/components/kickboxing/Application";
 import Trainers from "@/app/components/taekwondo/Trainers";
+import Applications from "@/app/components/taekwondo/Application";
 
 const backgroundImage = new URL(
   "../../../../public/image.png",
@@ -69,10 +70,7 @@ export default function KickboxingPage() {
         <p className="text-lg z-10 w-[80%] md:text-xl mt-4">
           Spoj snage, brzine i strategije – taekwondo koji mijenja život!
 Pridruži se našem kolektivu i postani najbolja verzija sebe!
-Nudimo taekwondo treninge u mnogim gradovima širom Bosne i Hercegovine – pronađi nas i započni svoju borilačku priču već danas!:{" "}
-          <span className="text-main-club-color">
-            Visoko, Breza, Kakanj, Kiseljak, Vareš
-          </span>
+Nudimo taekwondo treninge u mnogim gradovima širom Bosne i Hercegovine – pronađi nas i započni svoju borilačku priču već danas!{" "}
         </p>
 
         <button
@@ -159,7 +157,7 @@ Nudimo taekwondo treninge u mnogim gradovima širom Bosne i Hercegovine – pron
       <Trainers />
 
       {/* Contact Section */}
-      <Application />
+      <Applications />
 
       <div className="px-6 md:px-16 py-12">
         <h2 className="text-3xl font-bold text-main-club-color mb-6 flex items-center">
