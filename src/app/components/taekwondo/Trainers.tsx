@@ -7,7 +7,7 @@ const trainers = [
     name: "Edin Kajević Kaja",
     image: "/trainers/WhatsApp Image 2025-05-12 at 14.36.32.jpeg", // zamijeni stvarnim putanjama
     belt: "Crni pojas",
-    dan: "5.DAN",
+    dan: "6.DAN",
     border: "border-amber-500",
   },
   {
@@ -18,31 +18,17 @@ const trainers = [
     border: "border-neutral-400",
   },
   {
-    name: "Adnan Kozlo",
-    image: "/trainers/WhatsApp Image 2025-05-12 at 14.36.32 (1).jpeg",
-    belt: "Crni pojas",
-    dan: "2.DAN",
-    border: "border-neutral-400",
-  },
-  {
     name: "Sajra Kajević",
     image: "/trainers/WhatsApp Image 2025-05-12 at 14.36.32 (2).jpeg",
     belt: "Crni pojas",
-    dan: "2.DAN",
+    dan: "4.DAN",
     border: "border-neutral-400",
   },
   {
-    name: "Faruk Čaluk",
-    image: "/trainers/caluk.jpg",
+    name: "Adnan Kozlo",
+    image: "/trainers/WhatsApp Image 2025-05-12 at 14.36.32 (1).jpeg",
     belt: "Crni pojas",
-    dan: "2.DAN",
-    border: "border-neutral-400",
-  },
-  {
-    name: "Ismail Buza",
-    image: "/trainers/WhatsApp Image 2025-05-12 at 14.36.32 (3).jpeg",
-    belt: "Crni pojas",
-    dan: "2.DAN",
+    dan: "3.DAN",
     border: "border-neutral-400",
   },
 ];
