@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Kolektiv Bosna Rudar Website
 
-First, run the development server:
+## 📌 Project Description
+
+Web application for the Taekwondo collective **Bosna Rudar**, built using **Next.js**.
+The website provides information about the collective, training sessions, achievements, and contact details.
+
+## 🚀 Getting Started
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/FarukCaluk/kolektiv-bosna-rudar-website.git
+```
+
+2. **Install dependencies:**
+
+```bash
+npm install
+```
+
+3. **Run the development server:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Open your browser** and go to [http://localhost:3000](http://localhost:3000) to view the application in action.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technologies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Next.js** – React framework for server-side rendering and static site generation.
+* **TypeScript** – Statistically typed superset of JavaScript.
+* **Sanity.io** – Headless CMS for content management.
+* **Tailwind CSS** – Utility-first CSS framework for rapid UI development.
+* **ESLint & Prettier** – Tools for code quality and formatting.
 
-## Learn More
+## 📁 Directory Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+/public        # Static files (images, icons)
+/src           # Application source code
+  /components  # React components
+  /pages       # Application pages
+  /styles      # CSS styles
+.gitignore     # Git ignore rules
+next.config.ts # Next.js configuration
+package.json   # Dependencies and scripts
+README.md      # This document
+tsconfig.json  # TypeScript configuration
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💬 Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For more information or inquiries, feel free to contact us at:
 
-## Deploy on Vercel
+* Email: [taekwondo.klub.bosna@gmail.com](mailto:taekwondo.klub.bosna@gmail.com)
+* Phone: +387 61 933 207
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
