@@ -19,7 +19,7 @@
     "@sanity/vision": "^3.86.1",
     "emailjs": "^4.0.3",
     "framer-motion": "^12.40.0",
-    "next": "^15.2.3",
+    "next": "^16.2.6",
     "next-sanity": "^9.10.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
