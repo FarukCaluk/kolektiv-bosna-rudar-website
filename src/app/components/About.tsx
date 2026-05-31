@@ -1,102 +1,89 @@
 "use client";
 import Image from "next/image";
-import {
-  FaPhoneAlt,
-  FaMapMarkerAlt,
-  FaFacebook,
-  FaEnvelope,
-} from "react-icons/fa";
-import Gallery from "../../../public/backgrounds/gallery.png";
-import { useEffect, useState } from "react";
+import { FaPhoneAlt, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
+import GalleryImg from "../../../public/backgrounds/gallery.png";
 import Link from "next/link";
-
-const backgroundImage = new URL(
-  "../../../public/backgrounds/japan-gradient.png",
-  import.meta.url
-);
+import SectionReveal from "./SectionReveal";
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = document.getElementById("about-image");
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9) {
-          setIsVisible(true);
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div
-      id="about"
-      className="w-full min-h-screen h-[1200] cursor-default relative bg-cover bg-center px-6 sm:px-8"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      <div className="absolute inset-0 flex flex-col items-center sm:items-start justify-center z-20 max-w-6xl px-4 mx-auto">
-        <h1 className="text-6xl pt-12 sm:text-5xl md:text-7xl lg:text-8xl aladin-font font-semibold text-white text-center sm:text-left">
-          O KOLEKTIVU
-        </h1>
-        <div className="py-1 my-4 w-44 sm:w-52 md:w-64 lg:w-80 bg-gradient-to-r from-white to-[#ffffff49]"></div>
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <p className="text-lg sm:text-lg md:text-xl lg:text-2xl w-full md:w-[60%] text-white/90 leading-relaxed font-medium text-center sm:text-left">
+    <section id="about" className="py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 bg-[#0C1020] relative overflow-hidden">
+      <div
+        className="absolute -top-40 -left-40 w-80 h-80 sm:w-96 sm:h-96 rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(212,32,32,0.07) 0%, transparent 70%)" }}
+      />
 
-            Naš kolektiv nudi vrhunske treninge taekwondoa, kickboxinga, MMA-a i fitnessa – sve na jednom mjestu i na više lokacija širom BiH!
-            <br /> <br />
-            🥋 Taekwondo – korejska borilačka vještina koja razvija disciplinu, snagu i fleksibilnost.
-            🥊 Kickboxing – spoj brzine, snage i strategije za snažno i funkcionalno tijelo.
-            🥋 MMA – dinamičan sport koji kombinuje tehnike različitih borilačkih vještina.
-            💪 Fitness programi – za sve koji žele poboljšati zdravlje, formu i energiju.
-            <br /> <br />
-            Treninzi su prilagođeni svim uzrastima i nivoima iskustva!
-            Pridruži se zajednici koja promoviše zdrav način života, sportski duh i lični napredak.
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
 
-          </p>
-          <div
-            id="about-image"
-            className="transition-transform duration-700 ease-in-out"
-          >
-            <Image
-              src={Gallery}
-              alt="gallery"
-              height={200}
-              width={750}
-              className="rounded-lg shadow-lg"
-            />
+          {/* Text column */}
+          <div>
+            <SectionReveal>
+              <span className="red-line" />
+              <h2 className="bebas text-[clamp(2rem,7vw,5rem)] leading-none text-white mb-5 sm:mb-6">
+                O Kolektivu
+              </h2>
+            </SectionReveal>
+
+            <SectionReveal delay={0.1}>
+              <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
+                Naš kolektiv nudi vrhunske treninge taekwondoa, kickboxinga, MMA-a i fitnessa —
+                sve na jednom mjestu i na više lokacija širom BiH!
+              </p>
+              <div className="text-white/60 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 space-y-1.5">
+                <p>🥋 <strong className="text-white/80">Taekwondo</strong> — razvija disciplinu, snagu i fleksibilnost.</p>
+                <p>🥊 <strong className="text-white/80">Kickboxing</strong> — brzina, snaga i strategija.</p>
+                <p>🥋 <strong className="text-white/80">MMA</strong> — kombinacija različitih borilačkih vještina.</p>
+                <p>💪 <strong className="text-white/80">Fitness za žene</strong> — zdravlje, forma i energija.</p>
+              </div>
+              <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10">
+                Treninzi su prilagođeni svim uzrastima i nivoima iskustva. Pridruži se zajednici
+                koja promoviše zdrav način života, sportski duh i lični napredak.
+              </p>
+            </SectionReveal>
+
+            <SectionReveal delay={0.18}>
+              <div className="flex flex-col gap-2.5 sm:gap-3 mb-7 sm:mb-8">
+                {[
+                  { icon: <FaPhoneAlt />,    text: "061 933 207" },
+                  { icon: <FaMapMarkerAlt />, text: "Muhašinovići bb, Visoko, BiH" },
+                  { icon: <FaEnvelope />,    text: "taekwondo.klub.bosna@gmail.com" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 text-white/45 text-xs sm:text-sm">
+                    <span className="text-[#D42020] shrink-0">{item.icon}</span>
+                    <span className="break-all sm:break-normal">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                href="/membership"
+                className="inline-flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 border border-[#D42020]/40 text-[#D42020] text-xs sm:text-sm font-semibold tracking-widest uppercase hover:bg-[#D42020] hover:text-white transition-all duration-200"
+              >
+                Učlani se
+              </Link>
+            </SectionReveal>
           </div>
-        </div>
-        <div className="mt-8 flex flex-col sm:flex-row gap-6 text-white text-sm sm:text-base">
-          <div className="flex items-center gap-2">
-            <FaPhoneAlt className="text-main-club-color" />
-            <span>061 933 207</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <FaMapMarkerAlt className="text-main-club-color" />
-            <span>Muhašinovići bb, Visoko, BiH</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <FaFacebook className="text-main-club-color" />
-            <span>FB: Taekwondo klub Bosna Visoko</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <FaEnvelope className="text-main-club-color" />
-            <span>taekwondo.klub.bosna@gmail.com</span>
-          </div>
-        </div>
-        <div className="pt-12">
-          <Link
-            href="/membership"
-            className="px-4 xs:px-6 py-2 text-white border border-white text-xs xs:text-sm sm:text-base hover:text-black hover:bg-white font-semibold shadow-lg hover:bg-opacity-90 transition text-center"
-          >
-            Učlanite se
-          </Link>
+
+          {/* Image column */}
+          <SectionReveal direction="right" delay={0.15}>
+            <div className="relative">
+              <Image
+                src={GalleryImg}
+                alt="Kolektiv Bosna Rudar"
+                width={720} height={500}
+                className="w-full object-cover"
+                style={{ clipPath: "polygon(0 0,100% 0,100% 90%,0 100%)" }}
+              />
+              {/* Red corner accent */}
+              <div
+                className="absolute top-0 right-0 w-10 h-10 sm:w-12 sm:h-12 bg-[#D42020]"
+                style={{ clipPath: "polygon(100% 0,0 0,100% 100%)" }}
+              />
+            </div>
+          </SectionReveal>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

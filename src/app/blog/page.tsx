@@ -4,175 +4,124 @@ import client from "../../../sanityClient";
 import { urlFor } from "../../../sanityClient";
 
 type Blog = {
-  _id: string;
-  title: string;
-  description: string;
-  mainImage: any;
-  slug: { current: string };
-  categories: string[];
-  publishedAt: string;
+  _id: string; title: string; description: string; mainImage: any;
+  slug: { current: string }; categories: string[]; publishedAt: string;
 };
 
-const truncateText = (text: string | null | undefined, wordLimit: number) => {
-  if (!text) return ""; // Return an empty string if text is null or undefined
+const truncate = (text: string | null | undefined, limit: number) => {
+  if (!text) return "";
   const words = text.split(" ");
-  if (words.length > wordLimit) {
-    return (
-      words.slice(0, wordLimit).join(" ") +
-      ' <span style="color: #f45b44; font-weight: bold;">...find out more</span>'
-    );
-  }
-  return text;
+  return words.length > limit
+    ? words.slice(0, limit).join(" ") + ' <span style="color:#D42020;font-weight:600">...više</span>'
+    : text;
 };
 
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = date.toLocaleString("en-US", { month: "long" });
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
+const fmtDate = (d: string) => {
+  const dt = new Date(d);
+  return dt.toLocaleDateString("bs-BA", { day: "2-digit", month: "long", year: "numeric" });
 };
 
-export default async function Page() {
+export default async function BlogPage() {
   const blogs: Blog[] = await client.fetch(`*[_type == "post"]{
-    _id,
-    title,
-    description,
-    mainImage,
-    slug,
-    "categories": categories[]->title,
-    publishedAt
+    _id, title, description, mainImage, slug,
+    "categories": categories[]->title, publishedAt
   }`);
 
-  const ultrahighlighted = blogs.filter((blog) =>
-    blog.categories.includes("ultrahighlighted")
-  );
-  const highlightedBlogs = blogs.filter((blog) =>
-    blog.categories.includes("highlighted")
-  );
-  const otherBlogs = blogs.filter(
-    (blog) =>
-      !blog.categories.includes("highlighted") &&
-      !blog.categories.includes("ultrahighlighted")
-  );
+  const ultra       = blogs.filter(b => b.categories.includes("ultrahighlighted"));
+  const highlighted = blogs.filter(b => b.categories.includes("highlighted"));
+  const others      = blogs.filter(b => !b.categories.includes("highlighted") && !b.categories.includes("ultrahighlighted"));
 
   return (
-    <div className="mt-16 mx-4 sm:mx-8">
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 h-auto">
-        {/* Ultrahighlighted Blogs Section */}
-        <section className="basis-full lg:basis-[45%] flex flex-col justify-between">
-          {ultrahighlighted.map((blog) => (
-            <div key={blog._id}>
-              <Link href={`/blog/${blog.slug.current}`}>
-                <div className="hover:underline decoration-[#f45b44] underline-offset-4">
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-li">
+    <div className="bg-[#07090F] text-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 pt-20 pb-24">
+
+        {/* Page header */}
+        <div className="mb-16">
+          <span className="block w-10 h-[2px] bg-[#D42020] mb-5" />
+          <h1 className="bebas text-[clamp(3rem,8vw,7rem)] leading-none text-white">Novosti</h1>
+        </div>
+
+        {/* Featured layout */}
+        {(ultra.length > 0 || highlighted.length > 0) && (
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-px bg-white/[0.04] mb-20">
+            {/* Hero post */}
+            {ultra.map(blog => (
+              <Link key={blog._id} href={`/blog/${blog.slug.current}`}
+                className="lg:col-span-3 block group bg-[#07090F] p-0 overflow-hidden">
+                {blog.mainImage && (
+                  <div className="relative h-[340px] lg:h-[480px] overflow-hidden">
+                    <img src={urlFor(blog.mainImage).url()} alt={blog.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#07090F] via-transparent to-transparent" />
+                  </div>
+                )}
+                <div className="p-7">
+                  <p className="text-xs uppercase tracking-widest text-[#D42020] mb-2">{fmtDate(blog.publishedAt)}</p>
+                  <h2 className="bebas text-3xl lg:text-4xl text-white leading-tight group-hover:text-[#D42020] transition-colors">
                     {blog.title}
-                  </h1>
-                  <p
-                    className="text-xs sm:text-sm text-gray-300 mt-4 sm:mt-6"
-                    dangerouslySetInnerHTML={{
-                      __html: truncateText(blog.description, 10),
-                    }}
-                  />
+                  </h2>
+                  <p className="text-white/45 text-sm mt-3 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: truncate(blog.description, 20) }} />
                 </div>
               </Link>
-              {blog.mainImage && (
-                <Link href={`/blog/${blog.slug.current}`}>
-                  <div className="mt-4 relative w-full h-[300px] sm:h-[400px] lg:h-[510px] overflow-hidden rounded-lg group">
-                    <img
-                      className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                      src={urlFor(blog.mainImage).url()}
-                      alt={blog.title}
-                    />
-                  </div>
-                </Link>
-              )}
-              <div className="text-right mt-2 text-xs sm:text-sm">
-                {formatDate(blog.publishedAt)}
-              </div>
-            </div>
-          ))}
-        </section>
+            ))}
 
-        {/* Highlighted Blogs Section */}
-        <section className="basis-full lg:basis-[55%] flex flex-col justify-between">
-          {highlightedBlogs.map((blog, index) => (
-            <div
-              key={blog._id}
-              className={`flex flex-col lg:flex-row gap-4 ${
-                index === highlightedBlogs.length - 1 ? "items-start" : ""
-              }`}
-            >
-              <div className="flex-1">
-                <Link href={`/blog/${blog.slug.current}`}>
-                  <div className="hover:underline decoration-[#f45b44] underline-offset-4">
-                    <h1 className="text-lg sm:text-xl lg:text-2xl font-bold">
-                      {blog.title}
-                    </h1>
-                    <p
-                      className="text-xs sm:text-sm text-gray-300 mt-4 sm:mt-6"
-                      dangerouslySetInnerHTML={{
-                        __html: truncateText(blog.description, 25),
-                      }}
-                    />
-                  </div>
-                </Link>
-              </div>
-              <div>
-                {blog.mainImage && (
-                  <Link href={`/blog/${blog.slug.current}`}>
-                    <div className="relative w-full sm:w-[300px] lg:w-[380px] h-[150px] sm:h-[160px] lg:h-[180px] overflow-hidden rounded-lg group">
-                      <img
-                        className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                        src={urlFor(blog.mainImage).url()}
-                        alt={blog.title}
-                      />
+            {/* Side posts */}
+            <div className="lg:col-span-2 flex flex-col divide-y divide-white/[0.04] bg-[#07090F]">
+              {highlighted.map(blog => (
+                <Link key={blog._id} href={`/blog/${blog.slug.current}`}
+                  className="group flex gap-4 p-6 hover:bg-white/[0.02] transition-colors">
+                  {blog.mainImage && (
+                    <div className="relative w-24 h-20 shrink-0 overflow-hidden">
+                      <img src={urlFor(blog.mainImage).width(200).url()} alt={blog.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                     </div>
-                  </Link>
-                )}
-                <div className="text-right mt-2 text-xs sm:text-sm">
-                  {formatDate(blog.publishedAt)}
-                </div>
-              </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] uppercase tracking-widest text-[#D42020] mb-1">{fmtDate(blog.publishedAt)}</p>
+                    <h3 className="text-sm font-semibold leading-snug text-white group-hover:text-[#D42020] transition-colors line-clamp-2">
+                      {blog.title}
+                    </h3>
+                  </div>
+                </Link>
+              ))}
             </div>
-          ))}
-        </section>
-      </div>
-
-      {/* All Blogs Section */}
-      <section>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl mt-16 mb-8">
-          Sve Objave
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 max-h-[500px] overflow-hidden">
-          {otherBlogs.slice(0, 6).map((blog) => (
-            <div key={blog._id} className="relative flex flex-col">
-              {blog.mainImage && (
-                <div className="relative">
-                  <Link href={`/blog/${blog.slug.current}`}>
-                    <img
-                      src={urlFor(blog.mainImage).width(550).height(230).url()}
-                      alt={blog.title}
-                      className="object-cover w-full h-[150px] sm:h-[200px] lg:h-[230px] opacity-50 rounded-lg"
-                    />
-                  </Link>
-                  <p className="absolute bottom-0 left-0 text-white text-lg sm:text-xl lg:text-2xl px-2 py-1 w-full text-left">
-                    {blog.title}
-                  </p>
-                </div>
-              )}
-              <div className="text-right mt-2 text-xs sm:text-sm">
-                {formatDate(blog.publishedAt)}
-              </div>
-            </div>
-          ))}
-        </div>
-        {otherBlogs.length > 6 && (
-          <button className="mt-8 px-4 py-2 text-sm sm:text-base bg-blue-500 text-white rounded">
-            Load More
-          </button>
+          </div>
         )}
-      </section>
+
+        {/* All other posts */}
+        {others.length > 0 && (
+          <>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="bebas text-2xl text-white">Sve objave</span>
+              <div className="flex-1 h-px bg-white/[0.06]" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04]">
+              {others.slice(0, 9).map(blog => (
+                <Link key={blog._id} href={`/blog/${blog.slug.current}`}
+                  className="group block bg-[#07090F] p-6 hover:bg-[#0C1020] transition-colors">
+                  {blog.mainImage && (
+                    <div className="relative h-44 overflow-hidden mb-4">
+                      <img src={urlFor(blog.mainImage).width(550).height(230).url()} alt={blog.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-70 group-hover:opacity-100" />
+                    </div>
+                  )}
+                  <p className="text-[10px] uppercase tracking-widest text-[#D42020] mb-1">{fmtDate(blog.publishedAt)}</p>
+                  <h3 className="text-base font-semibold text-white group-hover:text-[#D42020] transition-colors leading-snug">
+                    {blog.title}
+                  </h3>
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
+
+        {blogs.length === 0 && (
+          <div className="text-center py-32">
+            <p className="bebas text-4xl text-white/20">Uskoro novi sadržaj</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

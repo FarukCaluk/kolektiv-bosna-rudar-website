@@ -1,109 +1,76 @@
 "use client";
 import Link from "next/link";
-import {
-  FaRunning,
-  FaHandRock,
-  FaDumbbell,
-  FaUsers,
-  FaFacebook,
-  FaInstagram,
-} from "react-icons/fa";
+import { motion } from "framer-motion";
+import SectionReveal from "./SectionReveal";
+import TiltCard from "./TiltCard";
 
-const backgroundImage = new URL(
-  "../../../public/backgrounds/japan-gradient-2.png",
-  import.meta.url
-);
-
-const sports = [
-  {
-    name: "Taekwondo",
-    icon: <FaRunning className="text-white text-5xl" />,
-    description:
-      "Korejska borilačka vještina koja razvija brzinu, fleksibilnost i preciznost udaraca. Idealna za sve uzraste! Naučite kako da se branite, razvijate fizičku izdržljivost i izgradite samopouzdanje.",
-  },
-  {
-    name: "MMA",
-    icon: <FaHandRock className="text-white text-5xl" />,
-    description:
-      "Savršena kombinacija tehnika iz različitih borilačkih sportova. Postanite svestran borac i testirajte svoje granice! S MMA-om ćete unaprijediti svoju snagu, agilnost i borilačke vještine.",
-  },
-  {
-    name: "Kickboxing",
-    icon: <FaDumbbell className="text-white text-5xl" />,
-    description:
-      "Eksplozivni treninzi koji poboljšavaju snagu, kondiciju i tehniku udaraca. Idealan sport za energične ljude! Učićete kako da se branite i podignete nivo svoje fizičke spremnosti na viši nivo.",
-  },
-  {
-    name: "Fitness za žene",
-    icon: <FaUsers className="text-white text-5xl" />,
-    description:
-      "Posebno prilagođeni treninzi za žene fokusirani na snagu, fleksibilnost i samopouzdanje! Ovaj program je osmišljen da vam pomogne da postignete svoje fitness ciljeve u sigurnom i podržavajućem okruženju.",
-  },
+const SPORTS = [
+  { n: "01", name: "Taekwondo",     sub: "Korejska borilačka vještina",  desc: "Razvija brzinu, fleksibilnost i preciznost udaraca. Idealna za sve uzraste — od djece do odraslih koji žele samoodbranu i samopouzdanje.", href: "/sports/taekwondo" },
+  { n: "02", name: "MMA",           sub: "Mješovite borilačke vještine", desc: "Savršena kombinacija tehnika iz različitih sportova. Postanite svestran borac i testirajte granice snage, agilnosti i vještina.",           href: "/sports/mma" },
+  { n: "03", name: "Kickboxing",    sub: "Eksplozivni stand-up",         desc: "Eksplozivni treninzi koji poboljšavaju snagu, kondiciju i tehniku udaraca. Idealan sport za energične ljude svih uzrasta.",                    href: "/sports/kickboxing" },
+  { n: "04", name: "Fitness za žene", sub: "Prilagođeni ženski programi", desc: "Posebno prilagođeni treninzi fokusirani na snagu, fleksibilnost i samopouzdanje u sigurnom, podržavajućem okruženju.",                       href: "/sports/women-training" },
 ];
 
 export default function Sports() {
   return (
-    <div
-      id="sports"
-      className="w-full min-h-screen bg-gray-900 text-white py-16 px-6 sm:px-8 flex items-center justify-center"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-5xl sm:text-8xl font-bold mb-8 aladin-font">
-          SPORTOVI KOLEKTIVA
-        </h1>
-        <div className="py-0.5 mb-10 w-44 sm:w-52 md:w-64 lg:w-80 mx-auto bg-gradient-to-r from-white to-[#ffffff49]"></div>
-        <p className="text-lg sm:text-xl text-white/80 mb-12">
-          Naša ponuda sportova i treninga pruža vam priliku da razvijete svoju
-          fizičku izdržljivost, snagu, fleksibilnost i mentalnu disciplinu. U
-          svakom treningu ćete se suočiti sa novim izazovima i postići
-          neverovatne rezultate. Pridružite nam se u kolektivu i postanite
-          najbolja verzija sebe!
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {sports.map((sport, index) => (
-            <div
-              key={index}
-              className="bg-[#242424] p-6 rounded-2xl shadow-lg flex flex-col items-center text-center transform hover:scale-105 transition duration-300 border border-stone-700"
-            >
-              <div className="mb-4">{sport.icon}</div>
-              <h2 className="text-2xl font-semibold mb-2">{sport.name}</h2>
-              <p className="text-white/80 text-lg leading-relaxed mb-4">
-                {sport.description}
-              </p>
-            </div>
+    <section id="sports" className="py-16 sm:py-20 md:py-24 lg:py-28 px-4 sm:px-6 bg-[#07090F]">
+      <div className="max-w-7xl mx-auto">
+
+        <SectionReveal>
+          <span className="red-line" />
+          <h2 className="bebas text-[clamp(2rem,7vw,5.5rem)] leading-none text-white mb-3 sm:mb-4">
+            Sportovi Kolektiva
+          </h2>
+          <p className="text-white/50 text-sm sm:text-base max-w-xl mb-10 sm:mb-14 lg:mb-16">
+            Četiri discipline. Jedan kolektiv. Pronađite sport koji vas inspiriše i postanite
+            najbolja verzija sebe.
+          </p>
+        </SectionReveal>
+
+        {/* Cards grid — no overflow-hidden so reveal animations aren't clipped */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-white/[0.04]">
+          {SPORTS.map((s, i) => (
+            <SectionReveal key={s.n} delay={i * 0.07}>
+              <TiltCard className="h-full">
+                <Link href={s.href} className="group block h-full bg-[#0C1020] p-6 sm:p-7 lg:p-8 relative overflow-hidden transition-colors duration-300 hover:bg-[#111828]">
+                  {/* Faded watermark number */}
+                  <span className="bebas absolute top-3 right-4 text-[5rem] sm:text-[6rem] leading-none text-white/[0.04] select-none pointer-events-none">
+                    {s.n}
+                  </span>
+                  {/* Number badge */}
+                  <span className="bebas text-[#D42020] text-sm tracking-widest">{s.n}</span>
+                  {/* Hover: red left border slides in */}
+                  <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#D42020] scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100" />
+
+                  <div className="mt-3 sm:mt-4 mb-2 sm:mb-3">
+                    <h3 className="bebas text-2xl sm:text-3xl text-white leading-none">{s.name}</h3>
+                    <p className="text-[#D42020] text-[10px] sm:text-xs font-medium tracking-wider uppercase mt-1">{s.sub}</p>
+                  </div>
+                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8">{s.desc}</p>
+
+                  <div className="flex items-center gap-2 text-white/30 text-[10px] sm:text-xs font-semibold tracking-widest uppercase group-hover:text-[#D42020] transition-colors duration-300">
+                    <span>Saznaj više</span>
+                    <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}>→</motion.span>
+                  </div>
+                </Link>
+              </TiltCard>
+            </SectionReveal>
           ))}
         </div>
-        <div className="pt-12">
+
+        <SectionReveal delay={0.35} className="mt-10 sm:mt-14 lg:mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pt-6 sm:pt-8 border-t border-white/[0.06]">
+          <p className="text-white/35 text-xs sm:text-sm">
+            Sva mjesta i rasporedi treninga dostupni su na stranicama disciplina.
+          </p>
           <Link
             href="/membership"
-            className="px-4 xs:px-6 py-2 text-white bg-black text-xs xs:text-sm sm:text-base hover:text-black hover:bg-white font-semibold shadow-lg hover:bg-opacity-90 transition text-center"
+            className="shrink-0 inline-flex items-center gap-3 px-6 sm:px-8 py-2.5 sm:py-3 bg-[#D42020] text-white text-xs sm:text-sm font-bold tracking-widest uppercase hover:bg-[#F03535] transition-colors"
+            style={{ clipPath: "polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,0 100%)" }}
           >
-            Učlanite se
+            Učlani se danas →
           </Link>
-        </div>
-        {/* Social Media Links */}
-        <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">
-          <a
-            href="https://www.facebook.com/TKDBOSNA/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-white text-lg hover:text-blue-400 transition"
-          >
-            <FaFacebook className="text-3xl" />
-            <span>Pratite nas na Facebooku</span>
-          </a>
-          <a
-            href="https://www.instagram.com/tkdkolektivbosnarudar/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-white text-lg hover:text-pink-400 transition"
-          >
-            <FaInstagram className="text-3xl" />
-            <span>Pratite nas na Instagramu</span>
-          </a>
-        </div>
+        </SectionReveal>
       </div>
-    </div>
+    </section>
   );
 }

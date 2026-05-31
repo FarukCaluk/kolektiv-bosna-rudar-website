@@ -1,100 +1,164 @@
 "use client";
 import Image from "next/image";
-import { FaChevronDown } from "react-icons/fa";
 import ClubLogo from "../../../public/logo.png";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect } from "react";
 
-const backgroundImage = new URL(
-  "../../../public/backgrounds/main-background.png",
-  import.meta.url
-);
+const BG = new URL("../../../public/backgrounds/main-background.png", import.meta.url);
 
 export default function Header() {
-  useEffect(() => {
-    const smoothScroll = (event: any) => {
-      event.preventDefault();
-      const targetId = event.currentTarget.getAttribute("href").substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop,
-          behavior: "smooth",
-        });
-      }
-    };
+  const { scrollY }     = useScroll();
+  const bgY             = useTransform(scrollY, [0, 700], ["0%", "28%"]);
+  const contentOpacity  = useTransform(scrollY, [0, 380], [1, 0]);
+  const contentY        = useTransform(scrollY, [0, 380], [0, -36]);
 
-    document.querySelectorAll("a[href^='#']").forEach((anchor) => {
-      anchor.addEventListener("click", smoothScroll);
-    });
-    return () => {
-      document.querySelectorAll("a[href^='#']").forEach((anchor) => {
-        anchor.removeEventListener("click", smoothScroll);
-      });
+  useEffect(() => {
+    const smooth = (e: Event) => {
+      e.preventDefault();
+      const a  = e.currentTarget as HTMLAnchorElement;
+      const id = a.getAttribute("href")?.substring(1);
+      document.getElementById(id ?? "")?.scrollIntoView({ behavior: "smooth" });
     };
+    const nodes = document.querySelectorAll<HTMLAnchorElement>("a[href^='#']");
+    nodes.forEach(n => n.addEventListener("click", smooth));
+    return () => nodes.forEach(n => n.removeEventListener("click", smooth));
   }, []);
 
   return (
-    <div
-      className="w-full cursor-default relative h-[1000] bg-cover bg-center overflow-hidden"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      {/* Content in the center */}
-      <div className="absolute inset-0 flex flex-col text-start items-center sm:items-start justify-center z-20 px-4 sm:px-10 max-w-6xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6">
-          <h1 className="text-6xl xs:text-3xl sm:text-5xl md:text-7xl lg:text-8xl aladin-font font-bold text-white leading-tight drop-shadow-xl text-center sm:text-left">
-            KOLEKTIV <br />
-            <span className="text-main-club-color">BOSNA RUDAR</span>
-          </h1>
-          <div>
-            <Image
-              alt="bosna-rudar"
-              className="w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32"
-              src={ClubLogo}
-              height={100}
-              width={100}
-            />
-          </div>
-        </div>
-        <div className="py-0.5 my-4 w-40 xs:w-52 sm:w-64 md:w-72 lg:w-80 bg-gradient-to-r from-white to-[#ffffff49] drop-shadow-xl"></div>
-        <p className="text-pretty text-lg text-white/90 leading-relaxed font-medium text-center sm:text-left">
-          <span className="text-main-club-color font-bold">
-            Kolektiv Bosna-Rudar
-          </span>{" "}
-          je sportska zajednica posvećena borilačkim vještinama i rekreaciji.
-          Nudimo taekwondo, kickboxing, MMA i fitness za žene, pružajući
-          vrhunske treninge za sve uzraste. <br /> <br /> Taekwondo sekcije
-          djeluju u Visokom, Kaknju, Brezi, Kiseljaku i Varešu, dok su
-          kickboxing i MMA dostupni u Kaknju i Brezi. Fitness za žene održava se
-          u Kaknju i Visokom. Naš cilj je razvoj sporta, zdravog načina života i
-          takmičarskih uspjeha!
-        </p>
-        {/* Additional Call-to-Action Buttons */}
-        <div className="flex xs:flex-row gap-4 mt-6">
-          <a
-            href="#about"
-            className="px-4 xs:px-6 py-2 text-white bg-black text-xs xs:text-sm sm:text-base hover:text-black hover:bg-white font-semibold shadow-lg hover:bg-opacity-90 transition text-center"
-          >
-            Saznaj Više
-          </a>
-          <a
-            href="#contact"
-            className="px-4 xs:px-6 py-2 text-white border border-white text-xs xs:text-sm sm:text-base font-semibold shadow-lg hover:bg-white hover:text-black transition text-center"
-          >
-            Kontaktiraj Nas
-          </a>
-        </div>
-      </div>
+    <div className="relative w-full h-screen min-h-[640px] overflow-hidden noise">
+      {/* Parallax background */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center scale-110"
+        style={{ backgroundImage: `url(${BG})`, y: bgY }}
+      />
+      <div className="absolute inset-0 bg-[#07090F]/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#07090F]/90 via-[#07090F]/40 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#07090F] to-transparent" />
 
-      {/* Scroll Down Indicator */}
-      <a
-        href="#about"
-        className="absolute bottom-10 sm:bottom-20 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white cursor-pointer z-20 animate-bounce"
+      {/* Main content */}
+      <motion.div
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="relative z-10 h-full flex flex-col justify-center max-w-7xl mx-auto px-5 sm:px-10"
       >
-        <span className="text-[10px] xs:text-xs sm:text-sm uppercase tracking-wide font-semibold">
-          Istraži više
-        </span>
-        <FaChevronDown className="h-6 w-6 xs:h-8 xs:w-8 sm:h-10 sm:w-10 text-white mt-2" />
-      </a>
+        {/* ── Mobile logo (above title, visible on <lg) ── */}
+        <motion.div
+          className="flex justify-start mb-6 lg:hidden"
+          initial={{ opacity: 0, scale: 0.75, y: -10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+        >
+          <Image
+            src={ClubLogo}
+            alt="Kolektiv Bosna Rudar"
+            width={90} height={90}
+            className="sm:w-[120px] sm:h-[120px] select-none"
+            style={{ filter: "drop-shadow(0 0 18px rgba(212,32,32,0.65))" }}
+          />
+        </motion.div>
+
+        <div className="max-w-2xl">
+          {/* Eyebrow */}
+          <motion.div
+            className="flex items-center gap-3 mb-5 sm:mb-6"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <span className="block w-7 sm:w-8 h-[2px] bg-[#D42020] shrink-0" />
+            <span className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-white/50">
+              Sportska zajednica · BiH
+            </span>
+          </motion.div>
+
+          {/* Brand name — clip-path reveal */}
+          <motion.h1
+            className="aladin-font text-[clamp(3rem,10vw,8rem)] leading-[0.90] font-bold text-white mb-1"
+            style={{ textShadow: "0 4px 40px rgba(0,0,0,0.8)" }}
+            initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
+            animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          >
+            KOLEKTIV
+          </motion.h1>
+          <motion.h1
+            className="aladin-font text-[clamp(3rem,10vw,8rem)] leading-[0.90] font-bold text-[#D42020] mb-6 sm:mb-8"
+            style={{ textShadow: "0 0 60px rgba(212,32,32,0.4), 0 4px 40px rgba(0,0,0,0.8)" }}
+            initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
+            animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.48 }}
+          >
+            BOSNA RUDAR
+          </motion.h1>
+
+          {/* Body text */}
+          <motion.p
+            className="text-white/60 text-sm sm:text-base leading-relaxed max-w-md sm:max-w-lg mb-8 sm:mb-10"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.85 }}
+          >
+            Taekwondo, kickboxing, MMA i fitness za žene — višestruko nagrađivana
+            zajednica sa lokacijama u Visokom, Kaknju, Brezi, Kiseljaku i Varešu.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="flex flex-wrap gap-3 sm:gap-4"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.05 }}
+          >
+            <a
+              href="#about"
+              className="inline-flex items-center px-6 sm:px-7 py-2.5 sm:py-3 bg-[#D42020] text-white text-xs sm:text-sm font-bold tracking-widest uppercase hover:bg-[#F03535] transition-colors duration-200"
+              style={{ clipPath: "polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,0 100%)" }}
+            >
+              Saznaj više
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center px-6 sm:px-7 py-2.5 sm:py-3 border border-white/25 text-white text-xs sm:text-sm font-medium tracking-widest uppercase hover:border-white/55 hover:bg-white/[0.05] transition-all duration-200"
+            >
+              Kontakt
+            </a>
+          </motion.div>
+        </div>
+
+        {/* ── Desktop logo (lg+) — large, right side, clearly visible ── */}
+        <motion.div
+          className="absolute right-8 xl:right-16 top-1/2 -translate-y-1/2 hidden lg:block"
+          initial={{ opacity: 0, scale: 0.8, x: 20 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
+        >
+          <Image
+            src={ClubLogo}
+            alt="Kolektiv Bosna Rudar"
+            width={300} height={300}
+            className="xl:w-[360px] xl:h-[360px] select-none"
+            style={{
+              opacity: 0.75,
+              filter: "drop-shadow(0 0 50px rgba(212,32,32,0.55)) drop-shadow(0 0 100px rgba(212,32,32,0.2))",
+            }}
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6 }}
+      >
+        <span className="text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-white/25">Skrolaj</span>
+        <motion.div
+          className="w-[1px] h-8 sm:h-10 bg-gradient-to-b from-[#D42020] to-transparent"
+          animate={{ scaleY: [1, 0.4, 1] }}
+          style={{ originY: 0 }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
     </div>
   );
 }

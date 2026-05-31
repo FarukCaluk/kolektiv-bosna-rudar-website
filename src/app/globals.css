@@ -1,28 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Aladin&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Aladin&display=swap");
 
 @import "tailwindcss";
 @tailwind utilities;
 
+/* ─── Design tokens ─────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --club-color: #f45b44;
+  --background: #07090F;
+  --surface:    #0C1020;
+  --surface-2:  #111828;
+  --foreground: #F0F4FF;
+  --muted:      #6B7A99;
+
+  --red:        #D42020;
+  --red-bright: #F03535;
+  --red-dim:    #A81818;
+
+  /* legacy aliases kept for existing classes */
+  --club-color:      #D42020;
+  --club-color-deep: #A81818;
+
+  --border:     rgba(255,255,255,0.06);
+  --border-red: rgba(212,32,32,0.20);
 }
 
-.text-main-club-color {
-  color: var(--club-color);
-}
-
-.bg-main-club-color {
-  background-color: var(--club-color);
-}
-
-.aladin-font {
-  font-family: "Aladin", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
+/* ─── Tailwind theme bridge ─────────────────────────────────────────────── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -30,61 +31,116 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Poppins, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
 }
 
+@media (pointer: coarse) { body { cursor: auto; } }
+
+/* ─── Typography utilities ──────────────────────────────────────────────── */
+.bebas      { font-family: "Bebas Neue", Impact, sans-serif; letter-spacing: 0.03em; }
+.aladin-font { font-family: "Aladin", system-ui; font-weight: 400; }
+
+/* ─── Brand shorthands ──────────────────────────────────────────────────── */
+.text-main-club-color   { color: var(--red); }
+.bg-main-club-color     { background-color: var(--red); }
+.border-main-club-color { border-color: var(--red); }
+
+/* ─── Glassmorphism ─────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(7,9,15,0.78);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ─── Custom cursor ─────────────────────────────────────────────────────── */
+.cursor-dot {
+  position: fixed; top: 0; left: 0;
+  width: 7px; height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 30px; height: 30px;
+  border: 1.5px solid rgba(212,32,32,0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  transition: width 0.22s ease, height 0.22s ease, border-color 0.22s ease;
+}
+
+.cursor-ring.hovered { width: 46px; height: 46px; border-color: rgba(212,32,32,0.70); }
+
+@media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* ─── Red accent line (section decorator) ───────────────────────────────── */
+.red-line {
+  display: block;
+  width: 2.5rem; height: 2px;
+  background: var(--red);
+  margin-bottom: 1.25rem;
+}
+
+/* ─── Noise texture overlay ─────────────────────────────────────────────── */
+.noise::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ─── Card hover pulse ──────────────────────────────────────────────────── */
+@keyframes card-pulse {
+  0%,100% { box-shadow: 0 0 0   0 rgba(212,32,32,0.00); }
+  50%     { box-shadow: 0 0 28px 0 rgba(212,32,32,0.22); }
+}
+
+.card-hover:hover { animation: card-pulse 2.6s ease-in-out infinite; }
+
+/* ─── Animations ────────────────────────────────────────────────────────── */
 @keyframes fade-in-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-10%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-8px) scaleY(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scaleY(1);    }
 }
 
-.animate-fade-in-down {
-  animation: fade-in-down 0.4s ease-out forwards;
+.animate-fade-in-down { animation: fade-in-down 0.22s ease-out forwards; transform-origin: top; }
+
+@keyframes clip-reveal {
+  from { clip-path: inset(0 100% 0 0); opacity: 0; }
+  to   { clip-path: inset(0 0%   0 0); opacity: 1; }
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #f45b44 #181818;
-  /* thumb, track */
+.animate-clip-reveal { animation: clip-reveal 1.1s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+* { scrollbar-width: thin; scrollbar-color: var(--red-dim) var(--surface); }
+
+::-webkit-scrollbar         { width: 5px; }
+::-webkit-scrollbar-track   { background: var(--surface); }
+::-webkit-scrollbar-thumb   { background: var(--red-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+/* ─── Autofill fix ──────────────────────────────────────────────────────── */
+input:-webkit-autofill, textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #0C1020 inset !important;
+  -webkit-text-fill-color: #F0F4FF !important;
 }
 
-/* WebKit Browsers */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #181818;
-  border-left: 1px solid #2c2c2c;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #f45b44, #a83232);
-  border-radius: 8px;
-  border: 2px solid #181818;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff6b4d, #c14040);
-}
-
-.prose p {
-  margin-bottom: 2rem;
-}
+/* ─── Blog prose ────────────────────────────────────────────────────────── */
+.prose p { margin-bottom: 2rem; }

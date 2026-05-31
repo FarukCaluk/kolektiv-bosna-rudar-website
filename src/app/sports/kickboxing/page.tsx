@@ -1,179 +1,66 @@
 "use client";
-import Image from "next/image";
-import {
-  FaPhone,
-  FaMapMarkerAlt,
-  FaArrowRight,
-  FaArrowLeft,
-  FaExpand,
-  FaCheck,
-  FaUsers,
-  FaQuestionCircle,
-  FaStar,
-  FaInfoCircle,
-  FaClock,
-  FaDumbbell,
-} from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import LocationSection from "@/app/components/LocationSection";
-import Application from "@/app/components/kickboxing/Application";
+import SportGallery from "@/app/components/SportGallery";
 import Trainers from "@/app/components/kickboxing/Trainers";
+import ApplicationForm from "@/app/components/ApplicationForm";
+import { FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 
-const backgroundImage = new URL(
-  "../../../../public/backgrounds/image.png",
-  import.meta.url
-);
+const BG = new URL("../../../../public/backgrounds/main-background.png", import.meta.url);
 
-const galleryImages = [
+const GALLERY = [
   "/WhatsApp Image 2025-05-14 at 17.44.16.jpeg",
   "/WhatsApp Image 2025-05-14 at 17.44.16 (1).jpeg",
   "/WhatsApp Image 2025-05-14 at 17.44.16 (2).jpeg",
   "/WhatsApp Image 2025-05-14 at 17.44.19.jpeg",
   "/WhatsApp Image 2025-05-14 at 17.44.19 (1).jpeg",
-
 ];
 
 export default function KickboxingPage() {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [faqOpen, setFaqOpen] = useState(Array(3).fill(false));
-
-  const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % galleryImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImage(
-      (prev) => (prev - 1 + galleryImages.length) % galleryImages.length
-    );
-  };
-
-  useEffect(() => {
-    const interval = setInterval(nextImage, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="bg-[#181818] text-white min-h-screen">
-      {/* Hero Section */}
-      <div className="relative py-76 w-full h-full flex flex-col justify-center items-center text-center px-8">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-100"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        ></div>
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl aladin-font font-bold text-white drop-shadow-xl relative w-fit">
-          Kickboxing
-        </h1>
-
-        <p className="text-lg z-10 w-[80%] md:text-xl mt-4">
-          Kombinacija snage, brzine i strategije.
-Pridruži se našem kickboxing kolektivu i postani bolja verzija sebe!
-Nudimo profesionalne kickboxing treninge za sve uzraste – bilo da želiš poboljšati kondiciju, naučiti samoodbranu ili se takmičiti. {" "}
-
-        </p>
-
-        <button
-          onClick={() => {
-            const target = document.getElementById("application");
-            if (target) {
-              target.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
-          className="mt-6 border xl:mb-12 mb-12 border-neutral-600 px-6 py-3 bg-black z-10 cursor-pointer text-white font-bold w-fit shadow-lg hover:bg-white hover:text-black transition-all duration-150 flex items-center"
-        >
-          <FaUsers className="mr-2" /> Prijavi se odmah
-        </button>
-      </div>
-      <div className="z-50">
-         <LocationSection locations={["Kakanj"]} />
-      </div>
-
-      {/* Gallery Section */}
-      <div className="relative bg-gradient-to-b from-[#242424] to-zinc-1000 py-12 text-center px-6 md:px-16">
-        <h2 className="text-6xl aladin-font font-bold text-main-club-color mb-2">
-          Galerija
-        </h2>
-        <p className="text-lg md:text-xl mb-4">
-          Pritiskom na sliku možete ući u detaljni prikaz.
-        </p>
-
-        <div className="max-w-5xl mx-auto flex flex-col gap-6">
-          {/* Main Image */}
-          <div className="relative h-80 md:h-[500px] cursor-pointer overflow-hidden rounded-xl shadow-2xl border border-zinc-700 hover:border-white transition-all">
-            <Image
-              src={galleryImages[currentImage]}
-              alt={`Kickboxing ${currentImage + 1}`}
-              layout="fill"
-              objectFit="cover"
-              className="rounded-xl transition-all duration-500"
-              onClick={() => setIsFullScreen(true)}
-            />
-          </div>
-
-          {/* Thumbnails */}
-          <div className="flex gap-4 justify-center flex-wrap">
-            {galleryImages.map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setCurrentImage(idx)}
-                className={`relative w-24 h-16 md:w-36 md:h-24 rounded-md overflow-hidden border-2 cursor-pointer transition-all duration-200 ${
-                  currentImage === idx
-                    ? "border-[#f45b44]"
-                    : "border-transparent hover:border-white"
-                }`}
-              >
-                <Image
-                  src={img}
-                  alt={`Thumbnail ${idx + 1}`}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </div>
-            ))}
-          </div>
+    <div className="bg-[#07090F] text-white min-h-screen">
+      <div className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${BG})` }} />
+        <div className="absolute inset-0 bg-[#07090F]/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07090F]/90 via-[#07090F]/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#07090F] to-transparent" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10">
+          <motion.div className="flex items-center gap-3 mb-5"
+            initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+            <span className="block w-8 h-[2px] bg-[#D42020]" />
+            <span className="text-xs font-semibold tracking-[0.22em] uppercase text-white/45">Kolektiv Bosna Rudar</span>
+          </motion.div>
+          <motion.h1 className="bebas text-[clamp(4rem,12vw,10rem)] leading-none text-white mb-6"
+            initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
+            animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}
+            transition={{ duration: 1.1, ease: [0.16,1,0.3,1], delay: 0.15 }}>
+            Kickboxing
+          </motion.h1>
+          <motion.p className="text-white/60 max-w-lg text-base leading-relaxed mb-8"
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7 }}>
+            Kombinacija snage, brzine i strategije. Pridruži se kickboxing kolektivu i
+            postani bolja verzija sebe. Profesionalni treninzi za sve uzraste.
+          </motion.p>
+          <motion.button
+            onClick={() => document.getElementById("application")?.scrollIntoView({ behavior: "smooth" })}
+            className="px-8 py-3 bg-[#D42020] text-white text-sm font-bold tracking-widest uppercase hover:bg-[#F03535] transition-colors"
+            style={{ clipPath: "polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)" }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
+            Prijavi se odmah
+          </motion.button>
         </div>
       </div>
-
-      {/* Fullscreen Image Modal */}
-      {isFullScreen && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50">
-          <Image
-            src={galleryImages[currentImage]}
-            alt="Kickboxing Training Fullscreen"
-            width={900}
-            height={600}
-            className="rounded-lg"
-          />
-          <button
-            className="absolute top-6 right-6 cursor-pointer text-white text-3xl"
-            onClick={() => setIsFullScreen(false)}
-          >
-            ✖
-          </button>
-        </div>
-      )}
-
+      <LocationSection locations={["Kakanj"]} />
+      <SportGallery images={GALLERY} />
       <Trainers />
-
-      {/* Contact Section */}
-      <Application />
-
-      <div className="px-6 md:px-16 py-12">
-        <h2 className="text-3xl font-bold text-main-club-color mb-6 flex items-center">
-          <FaMapMarkerAlt className="mr-2" /> Kontakt i Lokacija
-        </h2>
-        <div className="space-y-4 text-lg text-gray-300">
-          <p className="flex items-center gap-2">
-            <FaMapMarkerAlt className="text-main-club-color" /> Kickboxing sala,
-             Kakanj.
-          </p>
-          <p className="flex items-center gap-2">
-            <FaPhone className="text-main-club-color" /> 061 400 731
-            <FaPhone className="text-main-club-color" /> 061 376 075
-          </p>
+      <ApplicationForm defaultSport="kickboxing" locations={["Kakanj"]}
+        subtitle="Kickboxing treninzi su dostupni u Kaknju. Plaćanje se vrši na račun trenera." />
+      <section className="py-16 px-6 border-t border-white/[0.05] bg-[#07090F]">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row gap-8 text-sm text-white/40">
+          <div className="flex items-center gap-3"><FaMapMarkerAlt className="text-[#D42020]" /><span>Kickboxing sala — Kakanj</span></div>
+          <div className="flex items-center gap-3"><FaPhone className="text-[#D42020]" /><span>061 400 731 · 061 376 075</span></div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

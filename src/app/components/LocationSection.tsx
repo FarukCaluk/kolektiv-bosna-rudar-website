@@ -1,25 +1,19 @@
 import React from "react";
-import { HiOutlineMapPin } from "react-icons/hi2"; // outlined version
+import { FaMapMarkerAlt } from "react-icons/fa";
 
-interface LocationSectionProps {
-  locations: string[];
-}
+interface Props { locations: string[]; }
 
-const LocationSection: React.FC<LocationSectionProps> = ({ locations }) => {
+export default function LocationSection({ locations }: Props) {
   return (
-    <div className="bg-gradient z-50-to-t cursor-default from-[#ff8d7cb4] to-[#F45B44] text-white border-y border-[#ff8d7cb4] py-8 px-4 sm:px-8 shadow-md">
-      <div className="lg:flex md:flex align-center justify-center gap-16 text-center">
-        {locations.map((location, index) => (
-          <div key={index} className="flex flex-col items-center justify-center gap-4">
-            <span className="text-2xl sm:text-3xl md:text-4xl font-extralight">
-              {location}
-            </span>
-            <HiOutlineMapPin className="text-5xl sm:text-6xl" />
+    <div className="border-y border-white/[0.06] bg-[#0C1020] py-8 px-6">
+      <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-10">
+        {locations.map((loc, i) => (
+          <div key={i} className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors group">
+            <FaMapMarkerAlt className="text-[#D42020] text-lg" />
+            <span className="text-sm font-medium tracking-wider uppercase">{loc}</span>
           </div>
         ))}
       </div>
     </div>
   );
-};
-
-export default LocationSection;
+}
